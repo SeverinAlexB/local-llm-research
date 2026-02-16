@@ -1,0 +1,1 @@
+for any specific hardware component you mention, always link the toppreise.ch link with the price.

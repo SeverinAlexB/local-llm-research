@@ -6,7 +6,7 @@ Local AI inference hardware for home office use, primarily for AI-assisted codin
 
 ## Use Cases (by priority)
 
-1. **Code generation** — Primary workload. Large coding models (70B class) for main/complex tasks, smaller models (7B-32B) for sub-agents.
+1. **Code generation** — Primary workload. Frontier coding models for main/complex tasks, smaller models for sub-agents. The industry trend is toward **MoE (Mixture of Experts)** architectures (e.g., MiniMax-M2.5, GPT-OSS-120B, Qwen3-Coder-30B-A3B), which activate only a fraction of parameters per token (e.g., 10B active out of 230B total), delivering big-model quality at small-model speed. Dense models (e.g., Qwen2.5-Coder 72B, Llama 3.1 70B) remain relevant as fallbacks for specific tasks.
 2. **Image recognition** — Vision models analyzing screenshots for automated QA (e.g., an agent takes a screenshot of an app and evaluates it). Runs concurrently with code generation.
 3. **Image generation** — Not required. Cloud API fallback is acceptable.
 
@@ -21,18 +21,21 @@ Local AI inference hardware for home office use, primarily for AI-assisted codin
 
 - Multi-agent pattern: one main agent (needs speed) + multiple sub-agents (can be slower, can use smaller models)
 - All streams may run simultaneously alongside image recognition
+- **MoE note**: The 60-80 tok/s target is achievable with MoE coding models (e.g., GPT-OSS-120B at ~134 tok/s on a single RTX PRO 6000). Dense 70B models max out at ~32 tok/s on the same hardware — MoE models are the practical path to meeting speed targets.
 
 ## Memory (VRAM)
 
-- **Target**: 256 GB GPU-accessible RAM
-- **Minimum**: 128 GB GPU-accessible RAM
+- **Target**: 128-256 GB GPU-accessible RAM
+- **Practical minimum**: 96 GB GPU-accessible RAM
 - Must be GPU RAM (VRAM or unified memory) — not system RAM with CPU offloading
-- Sufficient to hold a 70B model (main) + a 7B-32B model (sub-agents) + a vision model, all loaded concurrently
+- Sufficient to hold a main coding model + sub-agent model(s) + a vision model, all loaded concurrently
+- **MoE note**: MoE models store all parameters in VRAM but only activate a subset per token. A 120B MoE model in Q4 (~65 GB) + a 30B MoE sub-agent model (~18 GB) + a 7B vision model (~5 GB) = ~88 GB total — fits on a single 96 GB card. The original 256 GB target assumed dense models; with MoE, **96 GB is sufficient** for most frontier coding workloads. 128-192 GB provides headroom for the largest MoE models (e.g., MiniMax-M2.5 at ~130 GB in NVFP4).
 
 ## Quantization
 
-- FP8 preferred
-- FP4 acceptable if needed for budget/memory reasons
+- FP8 preferred for dense models
+- FP4 / NVFP4 acceptable and increasingly relevant — Blackwell GPUs have native FP4 hardware support, and many MoE models are distributed in NVFP4 format (e.g., MiniMax-M2.5-NVFP4)
+- Q4 (GGUF) is the practical default for most local inference via Ollama/llama.cpp
 - Full FP16 not required
 
 ## Budget
@@ -88,4 +91,5 @@ Local AI inference hardware for home office use, primarily for AI-assisted codin
 
 - This starts as a hobby/side-project setup but may grow into something more serious
 - Possibility of sharing access with colleagues (not a hard requirement, but nice to have)
-- In ~1 year, 256 GB VRAM is expected to be sufficient for relevant workloads
+- MoE model trend is accelerating — expect more and better MoE coding models throughout 2026, further favoring high-bandwidth single-GPU setups over multi-GPU VRAM-maximizing builds
+- Hardware upgrade path: start with a single high-VRAM GPU, add a second later if larger MoE models (200B+) require it
