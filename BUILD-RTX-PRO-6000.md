@@ -1,6 +1,6 @@
 # RTX PRO 6000 Blackwell — Build Guide
 
-> Last updated: February 16, 2026
+> Last updated: February 17, 2026
 > All prices verified against toppreise.ch on this date.
 
 ---
@@ -56,12 +56,12 @@ During inference, each GPU reads from its own VRAM at 1,792 GB/s. The PCIe conne
 | With 1 GPU | x16 (full bandwidth) | x16 (full bandwidth) |
 | With 2 GPUs | x8/x8 (half bandwidth per GPU) | x16/x16 (full bandwidth) |
 | NVLink between GPUs | Not supported | Supported |
-| Platform cost | ~CHF 709 | ~CHF 1,619 |
-| **Difference** | — | **+CHF 910** |
+| Platform cost | ~CHF 628 | ~CHF 1,608 |
+| **Difference** | — | **+CHF 980** |
 
 ---
 
-## Option A: AM5 Platform (~CHF 9,690)
+## Option A: AM5 Platform (~CHF 9,485)
 
 The cheaper build. Upgrade to 2 GPUs is possible with reduced inter-GPU bandwidth (fine for independent models per GPU).
 
@@ -70,20 +70,20 @@ The cheaper build. Upgrade to 2 GPUs is possible with reduced inter-GPU bandwidt
 | # | Component | Specification | Price (CHF) |
 |---|-----------|--------------|-------------|
 | 1 | **GPU** | [NVIDIA RTX PRO 6000 Blackwell WS (96 GB)](https://www.toppreise.ch/price-comparison/Graphics-cards/NVIDIA-RTX-Pro-6000-Blackwell-Workstation-900-5G144-2200-000-p833823) | 7,691 |
-| 2 | **CPU** | [AMD Ryzen 9 9950X (16C/32T, 4.3 GHz)](https://www.toppreise.ch/price-comparison/Processors/AMD-Ryzen-9-9950X-Granite-Ridge-16x-4-3GHz-100-100001277WOF-p771475) | 440 |
-| 3 | **Motherboard** | [ASUS TUF Gaming X870E-Plus WIFI7](https://www.toppreise.ch/price-comparison/Motherboards/ASUS-TUF-GAMING-X870E-PLUS-WIFI7-AMD-X870E-90MB1M70-M0EAY0-p809177) | 269 |
+| 2 | **CPU** | [AMD Ryzen 9 9950X (16C/32T, 4.3 GHz)](https://www.toppreise.ch/price-comparison/Processors/AMD-Ryzen-9-9950X-Granite-Ridge-16x-4-3GHz-100-100001277WOF-p771475) | 439 |
+| 3 | **Motherboard** | [MSI X870E Gaming Plus WIFI (ATX, PCIe 5.0 x16, WiFi 7)](https://www.toppreise.ch/price-comparison/Motherboards/MSI-X870E-GAMING-PLUS-WIFI-AMD-X870E-7E70-001R-p809245) | 189 |
 | 4 | **RAM** | [Kingston FURY Beast DDR5-5600 64 GB CL40 (2x32 GB)](https://www.toppreise.ch/price-comparison/Memory/KINGSTON-FURY-Beast-Kit-DDR5-5600-64GB-CL40-Black-KF556C40BBK2-64-p688007) | 629 |
-| 5 | **PSU** | [be quiet! Pure Power 12 M 1000W (80+ Gold)](https://www.toppreise.ch/price-comparison/Power-supplies/BE-QUIET-Pure-Power-12-M-1000-Watts-BN345-p717884) | 171 |
-| 6 | **Case** | [Fractal Design Define 7 Black (solid panel)](https://www.toppreise.ch/price-comparison/Computer-cases/FRACTAL-DESIGN-Define-7-Black-FD-C-DEF7A-01-p601634) | 139 |
-| 7 | **CPU Cooler** | [Noctua NH-D15](https://www.toppreise.ch/price-comparison/CPU-coolers/NOCTUA-NH-D15-p366609) | 98 |
-| 8 | **Storage** | [Samsung 990 Pro 2TB NVMe](https://www.toppreise.ch/price-comparison/Solid-State-Drives-SSD/SAMSUNG-990-PRO-NVMe-M-2-SSD-2TB-MZ-V9P2T0BW-p702884) | 203 |
+| 5 | **PSU** | [Enermax Revolution III 1000W (80+ Gold, ATX 3.1)](https://www.toppreise.ch/price-comparison/Power-supplies/ENERMAX-REVOLUTION-III-1000-Watts-ERV1000G-AHG-MAC-p798249) | 91 |
+| 6 | **Case** | [Fractal Design Define 7 Black (solid panel)](https://www.toppreise.ch/price-comparison/Computer-cases/FRACTAL-DESIGN-Define-7-Black-FD-C-DEF7A-01-p601634) | 137 |
+| 7 | **CPU Cooler** | [be quiet! Dark Rock Pro 5](https://www.toppreise.ch/price-comparison/CPU-coolers/BE-QUIET-Dark-Rock-Pro-5-BK036-p748972) | 76 |
+| 8 | **Storage** | [Samsung 990 EVO Plus 2TB NVMe](https://www.toppreise.ch/price-comparison/Solid-State-Drives-SSD/SAMSUNG-990-EVO-Plus-SSD-M-2-2TB-MZ-V9S2T0BW-p784700) | 183 |
 | 9 | **Misc** | Cables, thermal paste | 50 |
-| | **TOTAL** | | **~CHF 9,690** |
+| | **TOTAL** | | **~CHF 9,485** |
 
 ### Power and noise
 
 - **Power draw:** ~475W under full GPU load (300W GPU + 125W CPU + 50W rest). The 1000W PSU has ample headroom.
-- **Noise:** Quiet. The PRO 6000 blower at 300W is far quieter than consumer cards at 450-575W. Noctua + Fractal Define 7 (sound-dampened) keeps system noise low.
+- **Noise:** Quiet. The PRO 6000 blower at 300W is far quieter than consumer cards at 450-575W. Dark Rock Pro 5 + Fractal Define 7 (sound-dampened) keeps system noise low.
 - **Electrical:** Standard Swiss 10A/230V outlet (2,300W capacity) — no issues.
 
 ### Upgrade path: adding a 2nd GPU
@@ -99,11 +99,11 @@ To add a second RTX PRO 6000 later:
 **Caveats:**
 - The 2nd GPU runs at PCIe 5.0 x8 (the x16 slot is shared/bifurcated). This is ~16 GB/s per direction — fine for independent models, but a bottleneck for tensor parallelism across GPUs.
 - No NVLink on AM5 — the two GPUs cannot be linked for unified memory.
-- Verify that the ASUS TUF X870E-Plus WIFI7 supports x8/x8 bifurcation in BIOS before purchasing. If not, the 2nd slot may run at PCIe 4.0 x4 from the chipset (much slower). Consider a higher-end X870E board with confirmed bifurcation support if this is a concern.
+- Verify that the MSI X870E Gaming Plus WIFI supports x8/x8 bifurcation in BIOS before purchasing. If not, the 2nd slot may run at PCIe 4.0 x4 from the chipset (much slower). Consider a higher-end X870E board with confirmed bifurcation support if this is a concern.
 
 ---
 
-## Option B: Threadripper Platform (~CHF 10,850)
+## Option B: Threadripper Platform (~CHF 10,666)
 
 The future-proof build. Adding a 2nd GPU is plug-and-play with full bandwidth and NVLink.
 
@@ -112,25 +112,25 @@ The future-proof build. Adding a 2nd GPU is plug-and-play with full bandwidth an
 | # | Component | Specification | Price (CHF) |
 |---|-----------|--------------|-------------|
 | 1 | **GPU** | [NVIDIA RTX PRO 6000 Blackwell WS (96 GB)](https://www.toppreise.ch/price-comparison/Graphics-cards/NVIDIA-RTX-Pro-6000-Blackwell-Workstation-900-5G144-2200-000-p833823) | 7,691 |
-| 2 | **CPU** | [AMD Threadripper 7960X (24C/48T, 4.2 GHz)](https://www.toppreise.ch/price-comparison/Processors/AMD-Ryzen-Threadripper-7960X-Storm-Peak-24x-4-2GHz-100-000001352-p751329) | 971 |
-| 3 | **Motherboard** | [ASUS Pro WS TRX50-SAGE WIFI (CEB, 4x PCIe 5.0 x16)](https://www.toppreise.ch/price-comparison/Motherboards/ASUS-Pro-WS-TRX50-SAGE-WIFI-AMD-TRX50-90MB1FZ0-M0EAY0-p756606) | 648 |
+| 2 | **CPU** | [AMD Threadripper 7960X (24C/48T, 4.2 GHz)](https://www.toppreise.ch/price-comparison/Processors/AMD-Ryzen-Threadripper-7960X-Storm-Peak-24x-4-2GHz-100-000001352-p751329) | 966 |
+| 3 | **Motherboard** | [ASUS Pro WS TRX50-SAGE WIFI (CEB, 4x PCIe 5.0 x16)](https://www.toppreise.ch/price-comparison/Motherboards/ASUS-Pro-WS-TRX50-SAGE-WIFI-AMD-TRX50-90MB1FZ0-M0EAY0-p756606) | 642 |
 | 4 | **RAM** | [Kingston FURY Beast DDR5-5600 64 GB CL40 (2x32 GB)](https://www.toppreise.ch/price-comparison/Memory/KINGSTON-FURY-Beast-Kit-DDR5-5600-64GB-CL40-Black-KF556C40BBK2-64-p688007) | 629 |
-| 5 | **PSU** | [be quiet! Dark Power Pro 13 1600W (80+ Titanium)](https://www.toppreise.ch/price-comparison/Power-supplies/BE-QUIET-Dark-Power-Pro-13-1600-Watts-BN332-p729058) | 352 |
-| 6 | **Case** | [Fractal Design Define 7 XL Black (solid panel)](https://www.toppreise.ch/price-comparison/Computer-cases/FRACTAL-DESIGN-Define-7-XL-Black-FD-C-DEF7X-01-p601653) | 193 |
-| 7 | **CPU Cooler** | [Noctua NH-U14S TR5-SP6 (sTR5 socket)](https://www.toppreise.ch/price-comparison/CPU-coolers/NOCTUA-NH-U14S-TR5-SP6-p750500) | 111 |
-| 8 | **Storage** | [Samsung 990 Pro 2TB NVMe](https://www.toppreise.ch/price-comparison/Solid-State-Drives-SSD/SAMSUNG-990-PRO-NVMe-M-2-SSD-2TB-MZ-V9P2T0BW-p702884) | 203 |
+| 5 | **PSU** | [ASRock Phantom Gaming PG-1600G 1600W (80+ Gold, ATX 3.1)](https://www.toppreise.ch/price-comparison/Power-supplies/ASROCK-Phantom-Gaming-PG-1600G-1600-Watts-90-UXP160-GFEAAB-p792444) | 205 |
+| 6 | **Case** | [Fractal Design Define 7 XL Black (solid panel)](https://www.toppreise.ch/price-comparison/Computer-cases/FRACTAL-DESIGN-Define-7-XL-Black-FD-C-DEF7X-01-p601653) | 196 |
+| 7 | **CPU Cooler** | [Noctua NH-U14S TR5-SP6 (sTR5 socket)](https://www.toppreise.ch/price-comparison/CPU-coolers/NOCTUA-NH-U14S-TR5-SP6-p750500) | 104 |
+| 8 | **Storage** | [Samsung 990 EVO Plus 2TB NVMe](https://www.toppreise.ch/price-comparison/Solid-State-Drives-SSD/SAMSUNG-990-EVO-Plus-SSD-M-2-2TB-MZ-V9S2T0BW-p784700) | 183 |
 | 9 | **Misc** | Cables, thermal paste | 50 |
-| | **TOTAL** | | **~CHF 10,848** |
+| | **TOTAL** | | **~CHF 10,666** |
 
 ### Power and noise
 
 - **Power draw:** ~525W under full GPU load (300W GPU + 175W CPU + 50W rest). The 1600W PSU is massively oversized for 1 GPU — this is intentional for the 2-GPU upgrade.
-- **Noise:** Quiet with 1 GPU. The Threadripper draws more than the 9950X but is still well within what Noctua + Define 7 XL can handle silently.
+- **Noise:** Quiet with 1 GPU. The Threadripper draws more than the 9950X but is still well within what the Noctua cooler + Define 7 XL can handle silently.
 - **Electrical:** Standard Swiss outlet — no issues.
 
 ### Why the larger components
 
-- **1600W PSU:** Sized for 2x PRO 6000 (600W GPU + 175W CPU + 75W rest = ~850W). Buying it now avoids replacing the PSU later.
+- **1600W PSU (80+ Gold):** Sized for 2x PRO 6000 (600W GPU + 175W CPU + 75W rest = ~850W). Buying it now avoids replacing the PSU later. The ASRock PG-1600G is 80+ Gold (vs Titanium on pricier units) — slightly less efficient but saves ~CHF 147.
 - **Define 7 XL:** The TRX50-SAGE is a CEB form factor board (larger than ATX). The XL case guarantees fitment and provides better airflow for 2 GPUs.
 - **4 DIMM slots + 2 empty:** The TRX50-SAGE has 4 DDR5 slots. 2x32 GB leaves 2 slots free to expand to 128 GB later if needed.
 
@@ -158,9 +158,9 @@ To add a second RTX PRO 6000 later:
 
 | | Option A (AM5) | Option B (Threadripper) |
 |--|---------------|------------------------|
-| **Total cost (1 GPU)** | **~CHF 9,690** | **~CHF 10,848** |
+| **Total cost (1 GPU)** | **~CHF 9,485** | **~CHF 10,666** |
 | **Cost to add 2nd GPU** | ~CHF 7,890-7,990 (GPU + new PSU) | ~CHF 7,791-7,891 (GPU + NVLink bridge) |
-| **Total cost (2 GPUs)** | ~CHF 17,580-17,680 | ~CHF 18,640-18,740 |
+| **Total cost (2 GPUs)** | ~CHF 17,375-17,475 | ~CHF 18,457-18,557 |
 | Performance (1 GPU) | Identical | Identical |
 | Performance (2 GPUs, independent models) | Same — no difference | Same — no difference |
 | Performance (2 GPUs, split model) | Slower (PCIe x8, no NVLink) | Faster (PCIe x16 + NVLink) |
@@ -173,7 +173,7 @@ To add a second RTX PRO 6000 later:
 
 ## Shop links (Switzerland)
 
-All links verified February 16, 2026.
+All links verified February 17, 2026.
 
 ### GPU
 
@@ -189,30 +189,30 @@ All links verified February 16, 2026.
 
 ### Option A components (AM5)
 
-| Component | Price (CHF) | Toppreise | Digitec | Brack |
-|-----------|-------------|-----------|---------|-------|
-| AMD Ryzen 9 9950X | 440 | [toppreise](https://www.toppreise.ch/price-comparison/Processors/AMD-Ryzen-9-9950X-Granite-Ridge-16x-4-3GHz-100-100001277WOF-p771475) | [digitec](https://www.digitec.ch/de/s1/product/amd-ryzen-9-9950x-am5-430-ghz-16-core-prozessor-47373754) | [brack](https://www.brack.ch/amd-cpu-ryzen-9-9950x-4-3-ghz-1753689) |
-| ASUS TUF X870E-Plus WIFI7 | 269 | [toppreise](https://www.toppreise.ch/price-comparison/Motherboards/ASUS-TUF-GAMING-X870E-PLUS-WIFI7-AMD-X870E-90MB1M70-M0EAY0-p809177) | [digitec](https://www.digitec.ch/de/s1/product/asus-tuf-gaming-x870e-plus-wifi7-am5-amd-x870e-atx-mainboard-58291944) | [brack](https://www.brack.ch/fr/asus-carte-mere-tuf-gaming-x870e-plus-wifi7-1891498) |
-| Noctua NH-D15 | 98 | [toppreise](https://www.toppreise.ch/price-comparison/CPU-coolers/NOCTUA-NH-D15-p366609) | [digitec](https://www.digitec.ch/en/s1/product/noctua-nh-d15-165-mm-cpu-coolers-2580255) | [brack](https://www.brack.ch/noctua-cpu-kuehler-nh-d15-300317) |
-| be quiet! Pure Power 12 M 1000W | 171 | [toppreise](https://www.toppreise.ch/price-comparison/Power-supplies/BE-QUIET-Pure-Power-12-M-1000-Watts-BN345-p717884) | [digitec](https://www.digitec.ch/en/s1/product/be-quiet-pure-power-12-m-1000-w-pc-netzteil-24077995) | [brack](https://www.brack.ch/be-quiet-netzteil-pure-power-12-m-1000-w-1520808) |
-| Fractal Design Define 7 Black | 139 | [toppreise](https://www.toppreise.ch/price-comparison/Computer-cases/FRACTAL-DESIGN-Define-7-Black-FD-C-DEF7A-01-p601634) | [digitec](https://www.digitec.ch/de/s1/product/fractal-define-7-black-solid-atx-matx-mini-itx-e-atx-pc-gehaeuse-12757901) | [brack](https://www.brack.ch/fractal-design-pc-gehaeuse-define-7-schwarz-1288894) |
+| Component | Price (CHF) | Toppreise |
+|-----------|-------------|-----------|
+| AMD Ryzen 9 9950X | 439 | [toppreise](https://www.toppreise.ch/price-comparison/Processors/AMD-Ryzen-9-9950X-Granite-Ridge-16x-4-3GHz-100-100001277WOF-p771475) |
+| MSI X870E Gaming Plus WIFI | 189 | [toppreise](https://www.toppreise.ch/price-comparison/Motherboards/MSI-X870E-GAMING-PLUS-WIFI-AMD-X870E-7E70-001R-p809245) |
+| be quiet! Dark Rock Pro 5 | 76 | [toppreise](https://www.toppreise.ch/price-comparison/CPU-coolers/BE-QUIET-Dark-Rock-Pro-5-BK036-p748972) |
+| Enermax Revolution III 1000W | 91 | [toppreise](https://www.toppreise.ch/price-comparison/Power-supplies/ENERMAX-REVOLUTION-III-1000-Watts-ERV1000G-AHG-MAC-p798249) |
+| Fractal Design Define 7 Black | 137 | [toppreise](https://www.toppreise.ch/price-comparison/Computer-cases/FRACTAL-DESIGN-Define-7-Black-FD-C-DEF7A-01-p601634) |
 
 ### Option B components (Threadripper)
 
-| Component | Price (CHF) | Toppreise | Digitec | Brack |
-|-----------|-------------|-----------|---------|-------|
-| AMD Threadripper 7960X | 971 | [toppreise](https://www.toppreise.ch/price-comparison/Processors/AMD-Ryzen-Threadripper-7960X-Storm-Peak-24x-4-2GHz-100-000001352-p751329) | — | — |
-| ASUS Pro WS TRX50-SAGE WIFI | 648 | [toppreise](https://www.toppreise.ch/price-comparison/Motherboards/ASUS-Pro-WS-TRX50-SAGE-WIFI-AMD-TRX50-90MB1FZ0-M0EAY0-p756606) | — | — |
-| Noctua NH-U14S TR5-SP6 | 111 | [toppreise](https://www.toppreise.ch/price-comparison/CPU-coolers/NOCTUA-NH-U14S-TR5-SP6-p750500) | — | — |
-| be quiet! Dark Power Pro 13 1600W | 352 | [toppreise](https://www.toppreise.ch/price-comparison/Power-supplies/BE-QUIET-Dark-Power-Pro-13-1600-Watts-BN332-p729058) | — | — |
-| Fractal Design Define 7 XL Black | 193 | [toppreise](https://www.toppreise.ch/price-comparison/Computer-cases/FRACTAL-DESIGN-Define-7-XL-Black-FD-C-DEF7X-01-p601653) | — | — |
+| Component | Price (CHF) | Toppreise |
+|-----------|-------------|-----------|
+| AMD Threadripper 7960X | 966 | [toppreise](https://www.toppreise.ch/price-comparison/Processors/AMD-Ryzen-Threadripper-7960X-Storm-Peak-24x-4-2GHz-100-000001352-p751329) |
+| ASUS Pro WS TRX50-SAGE WIFI | 642 | [toppreise](https://www.toppreise.ch/price-comparison/Motherboards/ASUS-Pro-WS-TRX50-SAGE-WIFI-AMD-TRX50-90MB1FZ0-M0EAY0-p756606) |
+| Noctua NH-U14S TR5-SP6 | 104 | [toppreise](https://www.toppreise.ch/price-comparison/CPU-coolers/NOCTUA-NH-U14S-TR5-SP6-p750500) |
+| ASRock Phantom Gaming PG-1600G 1600W | 205 | [toppreise](https://www.toppreise.ch/price-comparison/Power-supplies/ASROCK-Phantom-Gaming-PG-1600G-1600-Watts-90-UXP160-GFEAAB-p792444) |
+| Fractal Design Define 7 XL Black | 196 | [toppreise](https://www.toppreise.ch/price-comparison/Computer-cases/FRACTAL-DESIGN-Define-7-XL-Black-FD-C-DEF7X-01-p601653) |
 
 ### Shared components (both options)
 
-| Component | Price (CHF) | Toppreise | Digitec | Brack |
-|-----------|-------------|-----------|---------|-------|
-| Kingston FURY Beast DDR5-5600 64 GB CL40 (2x32 GB) | 629 | [toppreise](https://www.toppreise.ch/price-comparison/Memory/KINGSTON-FURY-Beast-Kit-DDR5-5600-64GB-CL40-Black-KF556C40BBK2-64-p688007) | [digitec](https://www.digitec.ch/en/s1/product/kingston-fury-beast-2-x-32gb-5600-mhz-ddr5-ram-dimm-ram-20929817) | [brack](https://www.brack.ch/kingston-ddr5-ram-fury-beast-5600-mhz-2x-32-gb-1509447) |
-| Samsung 990 Pro 2TB NVMe | 203 | [toppreise](https://www.toppreise.ch/price-comparison/Solid-State-Drives-SSD/SAMSUNG-990-PRO-NVMe-M-2-SSD-2TB-MZ-V9P2T0BW-p702884) | [digitec](https://www.digitec.ch/en/s1/product/samsung-990-pro-2000-gb-m2-2280-ssd-22097721) | [brack](https://www.brack.ch/samsung-ssd-990-pro-m-2-2280-nvme-2000-gb-1425209) |
+| Component | Price (CHF) | Toppreise |
+|-----------|-------------|-----------|
+| Kingston FURY Beast DDR5-5600 64 GB CL40 (2x32 GB) | 629 | [toppreise](https://www.toppreise.ch/price-comparison/Memory/KINGSTON-FURY-Beast-Kit-DDR5-5600-64GB-CL40-Black-KF556C40BBK2-64-p688007) |
+| Samsung 990 EVO Plus 2TB NVMe | 183 | [toppreise](https://www.toppreise.ch/price-comparison/Solid-State-Drives-SSD/SAMSUNG-990-EVO-Plus-SSD-M-2-2TB-MZ-V9S2T0BW-p784700) |
 
 ---
 
