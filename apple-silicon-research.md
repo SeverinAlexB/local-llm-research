@@ -15,8 +15,6 @@
 7. [Software Ecosystem & Limitations](#7-software-ecosystem--limitations)
 8. [Refurbished Availability](#8-refurbished-availability)
 9. [Upcoming Hardware — M5 Ultra Timeline](#9-upcoming-hardware--m5-ultra-timeline)
-10. [Recommendations Against Requirements](#10-recommendations-against-requirements)
-
 ---
 
 ## 1. Current Mac Lineup for AI Inference
@@ -115,29 +113,9 @@ Sources: [Apple Mac Studio Specs](https://www.apple.com/mac-studio/specs/), [App
 
 ---
 
-## 4. Mac Pro M2 Ultra
+## 4. Mac Pro M2 Ultra — Not Recommended
 
-### Current Status
-
-The Mac Pro was last updated in 2023 with the M2 Ultra. Bloomberg's Gurman reported Apple has "largely written off the Mac Pro." No M4 Ultra Mac Pro appears to be coming.
-
-### Specifications & Swiss Pricing
-
-| Configuration | Memory | Bandwidth | CHF |
-|---|---|---|---|
-| M2 Ultra 24C/60C, Tower | up to 192 GB | 800 GB/s | CHF 7,199 |
-| M2 Ultra 24C/76C, Tower | up to 192 GB | 800 GB/s | CHF 8,299 |
-| M2 Ultra 24C/60C, Rack | up to 192 GB | 800 GB/s | CHF 7,799 |
-| M2 Ultra 24C/76C, Rack | up to 192 GB | 800 GB/s | CHF 8,899 |
-
-### Verdict: Not recommended
-
-- **Max 192 GB** — still does not reach 256 GB target
-- **800 GB/s** bandwidth vs M3 Ultra's 819 GB/s — slightly slower
-- **Older chip** (M2 generation) — worse compute per watt and per core
-- **More expensive** than M3 Ultra Mac Studio for less capability
-- Mac Pro's PCIe expansion slots are wasted since Apple Silicon uses unified memory (you cannot add discrete GPUs)
-- The Mac Pro's only remaining advantage is internal storage expansion, which is irrelevant for inference
+Last updated 2023. Max 192 GB memory, 800 GB/s bandwidth, CHF 7,199-8,899. Older M2 chip is slower and more expensive than M3 Ultra Mac Studio for less capability. Apple has "largely written off the Mac Pro" (Bloomberg). PCIe expansion slots are wasted — Apple Silicon uses unified memory, no discrete GPUs. Do not buy.
 
 Sources: [EveryMac Mac Pro Prices CH](https://everymac.com/global-mac-prices/all-msrp-mac-pro-prices-in-switzerland.html), [Macworld Mac Pro Rumors](https://www.macworld.com/article/2320613/new-mac-pro-ultra-release-date-specs-price-m4-m5.html)
 
@@ -354,73 +332,3 @@ Bloomberg's Mark Gurman reported (November 2025) that Apple has M5 Max and M5 Ul
 
 Sources: [MacRumors M5 Ultra](https://www.macrumors.com/2025/11/04/mac-studio-m5-ultra-2026/), [Macworld 2026 Mac Studio](https://www.macworld.com/article/2973459/2026-mac-studio-what-we-know-about-the-upcoming-m5-update.html), [AppleInsider M5 Mac Studio](https://appleinsider.com/articles/26/02/08/m5-max-mac-studio-new-studio-display-could-finally-arrive-in-the-spring)
 
----
-
-## 10. Recommendations Against Requirements
-
-### Requirement Fit Matrix
-
-| Requirement | Target | M3 Ultra 256GB | M4 Max 128GB | Mac Pro M2 Ultra 192GB |
-|---|---|---|---|---|
-| GPU-accessible memory | 96-256 GB | 256 GB | 128 GB (min only) | 192 GB (partial) |
-| Main agent speed (MoE) | 60-80 tok/s | **~69 tok/s (PASS)** — GPT-OSS-120B | ~35 tok/s (PARTIAL) | ~45-55 tok/s (est., PARTIAL) |
-| Main agent speed (dense 70B) | 30 tok/s min | 15-25 tok/s (MISS) | 8-15 tok/s (MISS) | 10-15 tok/s (MISS) |
-| Sub-agent speed (MoE) | 15-20 tok/s | **~84 tok/s single / ~25 tok/s at 8 concurrent (PASS)** | ~81 tok/s single (PASS) | ~100+ tok/s (est., PASS) |
-| Concurrent streams | 5-10 | Feasible with vllm-mlx | Very tight on memory | Feasible but less memory |
-| Image recognition | Concurrent | PASS | PASS (tight) | PASS |
-| Noise | Quiet home office | Silent (no fan at idle) | Silent | Louder (tower fans) |
-| Budget | 4,000-15,000 CHF | ~CHF 5,900-6,100 | ~CHF 3,200 | CHF 7,199-8,299 |
-| Headless server | SSH/API | PASS | PASS | PASS |
-
-**MoE note:** The industry has shifted to MoE (Mixture of Experts) coding models that only activate a fraction of parameters per token. This dramatically changes the Apple Silicon story — GPT-OSS-120B (120B total, ~20B active) achieves ~69 tok/s on M3 Ultra, meeting the 60-80 tok/s target. See Section 5.5 for benchmarks.
-
-### MoE Models Change the Picture
-
-With **dense 70B models**, no Apple Silicon can hit 60-80 tok/s — the M3 Ultra achieves only ~15-25 tok/s on 70B Q4. However, the industry has shifted to **MoE (Mixture of Experts)** coding models, which only activate a fraction of parameters per token. This changes everything:
-
-| Model | Type | M3 Ultra tok/s (single) | Meets 60-80 target? |
-|---|---|---|---|
-| GPT-OSS-120B | MoE (120B/~20B active) | **~69 tok/s** | **Yes** |
-| Qwen3-30B-A3B | MoE (30B/3.3B active) | **~84 tok/s** | Far exceeds |
-| Qwen2.5-Coder 72B | Dense (72B) | ~15-20 tok/s | No |
-
-**The practical strategy on Apple Silicon**: Use **GPT-OSS-120B** (MoE) as the main coding agent at ~69 tok/s, and **Qwen3-Coder-30B-A3B** (MoE) for sub-agents at ~84 tok/s. Fall back to dense 70B models only for tasks where MoE models underperform.
-
-**Caveat**: Under heavy concurrency (8 streams), MoE performance drops significantly — GPT-OSS-120B falls from ~69 to ~19 tok/s. The NVIDIA RTX PRO 6000 Blackwell handles concurrency better (134 tok/s single, ~80-100 tok/s under load).
-
-### Best Apple Silicon Configuration
-
-**Recommended: Mac Studio M3 Ultra 28C/60C, 256 GB, 2 TB**
-- Estimated price: **~CHF 6,100**
-- Meets: memory target (256 GB), MoE main agent speed (~69 tok/s), sub-agent speed, concurrent inference, noise, budget
-- Falls short: dense 70B speed (15-25 tok/s), concurrent MoE performance degrades faster than NVIDIA
-- Excellent for: running multiple models simultaneously, silent operation, macOS ecosystem integration, long-term value
-- **MoE strategy**: Use GPT-OSS-120B as main agent (~69 tok/s), Qwen3-Coder-30B-A3B for sub-agents (~84 tok/s)
-
-### Price-to-Performance Summary
-
-| Config | CHF | Memory | 70B tok/s | Notes |
-|---|---|---|---|---|
-| M4 Max 128GB | ~3,200 | 128 GB | 8-15 | Budget option; memory-limited |
-| M3 Ultra 256GB (28/60) | ~5,900 | 256 GB | 15-25 | Best value for 256GB target |
-| M3 Ultra 256GB (32/80) | ~7,500 | 256 GB | 15-25 | +33% GPU cores, marginal LLM gain |
-| M3 Ultra 512GB (32/80) | ~8,400 | 512 GB | 15-25 | Overkill for current needs; future-proof |
-| Mac Pro M2 Ultra 192GB | ~7,200 | 192 GB | 10-15 | Overpriced, outdated, dead product line |
-
----
-
-## Key Takeaways
-
-1. **The M3 Ultra 256 GB Mac Studio at ~CHF 5,900 is the clear Apple Silicon choice** — it is the only current Mac that reaches 256 GB GPU-accessible memory within budget.
-
-2. **With MoE models, 60-80 tok/s IS achievable on Apple Silicon.** GPT-OSS-120B (MoE) runs at ~69 tok/s on M3 Ultra — within the target range. Dense 70B models still only get ~15-25 tok/s. The practical strategy is to use MoE coding models for speed-critical tasks. However, the NVIDIA RTX PRO 6000 Blackwell achieves ~134 tok/s on the same MoE models — nearly 2x faster — and handles concurrency better.
-
-3. **Concurrent multi-agent inference is feasible** but requires vllm-mlx or MLC-LLM rather than raw MLX. Memory bandwidth (819 GB/s) is shared across all concurrent streams, so throughput per stream degrades with concurrency (84 tok/s single → 25 tok/s at 8 concurrent for Qwen3-30B-A3B; 69 tok/s single → 19 tok/s at 8 concurrent for GPT-OSS-120B).
-
-4. **Do not buy the Mac Pro.** It is older, more expensive, louder, capped at 192 GB, and Apple has abandoned the product line.
-
-5. **If you can wait until fall 2026**, the M5 Ultra Mac Studio will likely offer significantly better performance (potentially 30-40% faster inference) with the same or larger memory options. The M5 Max is coming sooner (spring 2026) but will still cap at ~128 GB.
-
-6. **The refurbished market has nothing relevant** for this use case as of February 2026.
-
-7. **Image recognition works fine** on Apple Silicon. Image *generation* is 2-8x slower than NVIDIA, but per your requirements, image generation is not needed (cloud fallback acceptable).
