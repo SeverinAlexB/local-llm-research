@@ -774,39 +774,17 @@ Source: [Dual RTX 5090 vs H100](https://www.hardware-corner.net/dual-rtx-5090-vs
 
 ## 14. Purpose-Built Inference Appliances
 
-### NVIDIA DGX Spark (Reference Point)
+### NVIDIA DGX Spark / ASUS Ascent
 
-| Spec | Value |
-|------|-------|
-| **Chip** | Grace Blackwell GB10 (ARM CPU + Blackwell GPU, NVLink-C2C) |
-| **Memory** | 128 GB unified LPDDR5X |
-| **Memory Bandwidth** | ~273 GB/s |
-| **Compute** | 1 PFLOP FP4 AI |
-| **TDP** | <240W |
-| **Storage** | 4 TB NVMe SSD |
-| **Connectivity** | 10GbE, Wi-Fi 7, ConnectX-7 (200 Gb/s), 2-unit clustering |
-| **Price** | $3,999 |
-| **Availability** | Available now (October 2025 launch). Stock constrained outside US. |
-| **Key Differentiator** | Desktop AI supercomputer. Turnkey with DGX OS. CUDA ecosystem. |
+> **Full deep-dive:** See [dgx-spark/research.md](dgx-spark/research.md) for detailed specs, ASUS Ascent variants with Swiss pricing, clustering performance, and build guides.
 
-**Assessment for our use case:** The DGX Spark is the benchmark for desktop AI appliances. 128 GB unified memory is attractive, but 273 GB/s bandwidth is severely limiting — roughly 7x slower than RTX PRO 6000. Estimated 70B Q4 inference: ~7-8 tok/s. Good for experimentation and smaller models, not for production 60-80 tok/s coding workflows. **Too slow for our performance targets.**
-
-Sources: [NVIDIA DGX Spark](https://marketplace.nvidia.com/en-us/enterprise/personal-ai-supercomputers/dgx-spark/), [DGX Spark Prices](https://www.glukhov.org/post/2025/10/nvidia-dgx-spark-prices/)
+The DGX Spark (GB10, 128 GB, 273 GB/s) is the benchmark for desktop AI appliances. Too slow for dense 70B models (~5 tok/s), but meets our MoE targets with 2-unit clustering (75 tok/s on GPT-OSS-120B). The ASUS Ascent GX10 uses the identical chip at lower prices ([CHF 2,477 for 1 TB](https://www.toppreise.ch/price-comparison/Complete-systems/ASUS-Ascent-GX10-GG0003BN-NVIDIA-Grace-Blackwell-90MS0371-M00030-p824149)).
 
 ---
 
 ### NVIDIA DGX Station (Upcoming, Spring 2026)
 
-| Spec | Value |
-|------|-------|
-| **Chip** | GB300 Grace Blackwell Ultra Desktop Super |
-| **Memory** | 784 GB unified (288 GB GPU HBM3e + system RAM) |
-| **Compute** | 20 PFLOPS AI |
-| **Price** | Not disclosed (likely $50,000+) |
-| **Availability** | Spring 2026 via ASUS, Dell, HP, MSI, Supermicro, others |
-| **Key Differentiator** | Desktop powerhouse. 784 GB unified memory. 20x DGX Spark performance. |
-
-**Assessment:** This is the ultimate desktop AI machine. 784 GB memory with 288 GB HBM3e bandwidth would demolish our performance targets. But pricing will almost certainly be $50,000-100,000+ based on NVIDIA's positioning. **Dream machine, likely far above budget.**
+GB300 Grace Blackwell Ultra Desktop Super. 784 GB unified memory, 20 PFLOPS AI. Likely $50,000+. **Dream machine, far above budget.**
 
 Source: [DGX Station Blog](https://blogs.nvidia.com/blog/dgx-spark-and-station-open-source-frontier-models/)
 

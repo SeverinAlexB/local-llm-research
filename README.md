@@ -24,19 +24,41 @@ This leaves three viable paths: **NVIDIA discrete GPUs** (best bandwidth + CUDA)
 
 ## Files
 
+### Cross-Platform
+
 | File | Purpose |
 |------|---------|
 | [requirements.md](requirements.md) | What we need — performance targets, budget, constraints |
 | [decision-summary.md](decision-summary.md) | Which configs meet those requirements and why |
-| [build-guides.md](build-guides.md) | Exact parts lists, prices, shop links for each build |
-| [benchmarks.md](benchmarks.md) | All performance data — tok/s tables, memory requirements, software comparison |
-| [gpu-research-nvidia.md](gpu-research-nvidia.md) | Deep-dive on every NVIDIA GPU considered |
-| [apple-silicon-research.md](apple-silicon-research.md) | Mac Studio M3 Ultra / M4 Max analysis |
-| [vendor-options.md](vendor-options.md) | Pre-built workstation vendors (BIZON, BRESSNER, RECT) |
+| [benchmarks.md](benchmarks.md) | Shared reference — model memory requirements, inference software comparison |
 | [alternative-platforms-research.md](alternative-platforms-research.md) | Full survey of 30+ competing platforms (AMD, Intel, Tenstorrent, startups, etc.) |
+
+### NVIDIA GPU
+
+| File | Purpose |
+|------|---------|
+| [nvidia-gpu/research.md](nvidia-gpu/research.md) | Deep-dive on every NVIDIA GPU considered |
+| [nvidia-gpu/build-guide.md](nvidia-gpu/build-guide.md) | Parts lists, prices, shop links for Configs #1, #2, #4 |
+| [nvidia-gpu/benchmarks.md](nvidia-gpu/benchmarks.md) | NVIDIA-specific token generation speeds, concurrent inference |
+| [nvidia-gpu/vendor-options.md](nvidia-gpu/vendor-options.md) | Pre-built workstation vendors (BIZON, BRESSNER, RECT) |
+
+### Apple Silicon
+
+| File | Purpose |
+|------|---------|
+| [apple-silicon/research.md](apple-silicon/research.md) | Mac Studio M3 Ultra / M4 Max analysis |
+| [apple-silicon/benchmarks.md](apple-silicon/benchmarks.md) | Apple Silicon token generation speeds, concurrent scaling |
+
+### DGX Spark
+
+| File | Purpose |
+|------|---------|
+| [dgx-spark/research.md](dgx-spark/research.md) | DGX Spark / ASUS Ascent deep-dive, variants, clustering |
+| [dgx-spark/build-guide.md](dgx-spark/build-guide.md) | Cluster configurations (2-unit, 3-unit), pricing |
+| [dgx-spark/benchmarks.md](dgx-spark/benchmarks.md) | Spark-specific performance data |
 
 ## Reading Order
 
-**For the purchase decision:** requirements → decision-summary → build-guides. Done.
+**For the purchase decision:** requirements → decision-summary → platform build-guide. Done.
 
-**For deep-dives:** benchmarks (all perf data), gpu-research-nvidia (GPU details), apple-silicon-research (Mac path), vendor-options (pre-built alternatives), alternative-platforms-research (why no one else competes).
+**For deep-dives:** benchmarks (shared reference), then platform-specific research + benchmarks files. alternative-platforms-research (why no one else competes).

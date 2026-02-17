@@ -92,7 +92,7 @@ Sources: [DatabaseMart PRO 6000 Benchmark](https://www.databasemart.com/blog/oll
 
 **Physical limits:** 2x in a tower (practical maximum). 3-4x infeasible (575W x 4 = 2,300W GPU alone).
 
-**Verdict:** Best single-card consumer performance. Two cards give 64 GB VRAM at ~CHF 4,800-7,000 — but 64 GB is well below the 96 GB practical minimum for multi-agent workloads. Best used as a companion to the PRO 6000 (Config #2 in [build-guides.md](build-guides.md)).
+**Verdict:** Best single-card consumer performance. Two cards give 64 GB VRAM at ~CHF 4,800-7,000 — but 64 GB is well below the 96 GB practical minimum for multi-agent workloads. Best used as a companion to the PRO 6000 (Config #2 in [build-guide.md](build-guide.md)).
 
 Sources: [RTX 5090 Europe Pricing](https://videocardz.com/newz/nvidia-geforce-rtx-5090-sees-first-price-drop-below-msrp-in-europe), [Dual RTX 5090 Benchmark](https://www.databasemart.com/blog/ollama-gpu-benchmark-rtx5090-2), [Dual RTX 5090 vs H100](https://www.hardware-corner.net/dual-rtx-5090-vs-h100-for-llm/)
 

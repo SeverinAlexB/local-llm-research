@@ -57,7 +57,7 @@ Sources: [DatabaseMart PRO 6000 Benchmark](https://www.databasemart.com/blog/oll
 
 ## Top 4 Configurations (Ranked)
 
-> Full parts lists, shop links, and component pricing are in [build-guides.md](build-guides.md).
+> Full parts lists, shop links, and component pricing are in the platform build guides: [nvidia-gpu/build-guide.md](nvidia-gpu/build-guide.md), [dgx-spark/build-guide.md](dgx-spark/build-guide.md).
 
 ### #1 — Single RTX PRO 6000 Build (RECOMMENDED)
 
@@ -217,9 +217,14 @@ Want MAX SPEED on dense models only?
 
 | File | What's inside |
 |------|---------------|
-| [build-guides.md](build-guides.md) | Full parts lists, shop links, and component pricing for each config |
-| [benchmarks.md](benchmarks.md) | All benchmark tables, memory requirements, inference software comparison |
-| [gpu-research-nvidia.md](gpu-research-nvidia.md) | Deep-dive on every NVIDIA GPU considered |
-| [apple-silicon-research.md](apple-silicon-research.md) | Mac Studio M3 Ultra / M4 Max analysis |
-| [vendor-options.md](vendor-options.md) | Pre-built workstation vendors |
+| [nvidia-gpu/build-guide.md](nvidia-gpu/build-guide.md) | NVIDIA parts lists, shop links, component pricing (Configs #1, #2, #4) |
+| [dgx-spark/build-guide.md](dgx-spark/build-guide.md) | DGX Spark / ASUS Ascent cluster configurations (Config #2b) |
+| [benchmarks.md](benchmarks.md) | Model memory requirements, inference software comparison |
+| [nvidia-gpu/benchmarks.md](nvidia-gpu/benchmarks.md) | NVIDIA-specific benchmark tables, concurrent inference |
+| [apple-silicon/benchmarks.md](apple-silicon/benchmarks.md) | Apple Silicon benchmark tables, concurrent scaling |
+| [dgx-spark/benchmarks.md](dgx-spark/benchmarks.md) | DGX Spark performance data |
+| [nvidia-gpu/research.md](nvidia-gpu/research.md) | Deep-dive on every NVIDIA GPU considered |
+| [apple-silicon/research.md](apple-silicon/research.md) | Mac Studio M3 Ultra / M4 Max analysis |
+| [dgx-spark/research.md](dgx-spark/research.md) | DGX Spark / ASUS Ascent deep-dive |
+| [nvidia-gpu/vendor-options.md](nvidia-gpu/vendor-options.md) | Pre-built workstation vendors |
 | [requirements.md](requirements.md) | Hardware requirements |
