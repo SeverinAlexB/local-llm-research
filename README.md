@@ -31,6 +31,7 @@ This leaves three viable paths: **NVIDIA discrete GPUs** (best bandwidth + CUDA)
 | [requirements.md](requirements.md) | What we need — performance targets, budget, constraints |
 | [decision-summary.md](decision-summary.md) | Which configs meet those requirements and why |
 | [benchmarks.md](benchmarks.md) | Shared reference — model memory requirements, inference software comparison |
+| [coding-model-benchmarks.md](coding-model-benchmarks.md) | Model quality benchmarks — SWE-Bench, LiveCodeBench, Aider scores by VRAM tier |
 | [alternative-platforms-research.md](alternative-platforms-research.md) | Full survey of 30+ competing platforms (AMD, Intel, Tenstorrent, startups, etc.) |
 
 ### NVIDIA GPU

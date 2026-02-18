@@ -2,6 +2,8 @@
 
 > Research compiled February 2026. All figures are approximate and depend heavily on context length, batch size, quantization method, driver version, and inference software.
 
+For **model quality** benchmarks (SWE-Bench, LiveCodeBench, Aider — how good are these models at coding?), see [coding-model-benchmarks.md](coding-model-benchmarks.md).
+
 For platform-specific benchmark data, see:
 - [nvidia-gpu/benchmarks.md](nvidia-gpu/benchmarks.md) — NVIDIA GPU token generation speeds, concurrent inference, deployment strategies
 - [apple-silicon/benchmarks.md](apple-silicon/benchmarks.md) — Apple Silicon token generation speeds, concurrent scaling

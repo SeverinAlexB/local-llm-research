@@ -31,6 +31,7 @@ Since early 2025, nearly all frontier coding models use **Mixture of Experts (Mo
 | **GPT-OSS-120B** | 120B | ~20B | ~65 GB | **134** |
 | **GPT-OSS-20B** | 20B | ~5B | ~14 GB | **185** |
 | **Qwen3-Coder-30B-A3B** | 30B | 3.3B | ~18 GB | **~150-200** (est.) |
+| **Qwen3-Coder-Next-80B-A3B** | 80B | ~3B | ~45 GB | **~150-180** (est.) |
 | **Qwen3-30B-A3B** | 30B | 3.3B | ~18 GB | **~150-200** (est.) |
 | **DeepSeek-Coder-V2-Lite** | 16B | 2.4B | ~10 GB | **~200+** (est.) |
 
@@ -58,6 +59,26 @@ Sources: [DatabaseMart PRO 6000 Benchmark](https://www.databasemart.com/blog/oll
 
 ---
 
+## Model Quality Context — The 96 GB Ceiling
+
+Speed is only half the picture. How good are these models at real-world software engineering? Full analysis: [coding-model-benchmarks.md](coding-model-benchmarks.md).
+
+| Model | VRAM (Q4) | SWE-Bench Verified | LiveCodeBench v6 | Fits 96 GB? |
+|---|---|---|---|---|
+| Claude Opus 4.5 (proprietary) | — | **80.9%** | ~87% | — |
+| MiniMax-M2.5 | ~130 GB | **80.2%** | 65% | No (needs 128 GB+) |
+| Qwen3.5-397B-A17B | ~212 GB | 76.4% | 83.6% | No (needs 256 GB+) |
+| **Qwen3-Coder-Next-80B** | **~45 GB** | **70.6%** | — | **Yes** |
+| **GPT-OSS-120B** | **~65 GB** | **62.4%** | **83.2%** | **Yes** |
+| Qwen3-Coder-30B-A3B | ~18 GB | ~51% | — | **Yes** |
+
+**What this means for the configs below:**
+- **96 GB** is sufficient for good-quality local coding (70.6% SWE-Bench with Qwen3-Coder-Next). Not frontier.
+- **128 GB** (Config #2) unlocks MiniMax-M2.5 at **80.2% SWE-Bench** — near-proprietary quality. This is the single biggest quality jump available.
+- **256 GB+** (Configs #2b, #3) unlocks Qwen3.5-397B, but at slower inference speeds.
+
+---
+
 ## Top 4 Configurations (Ranked)
 
 > Full parts lists, shop links, and component pricing are in the platform build guides: [nvidia-gpu/build-guide.md](nvidia-gpu/build-guide.md), [dgx-spark/build-guide.md](dgx-spark/build-guide.md).
@@ -79,6 +100,8 @@ Sources: [DatabaseMart PRO 6000 Benchmark](https://www.databasemart.com/blog/oll
 | **Upgrade path** | Swap to Threadripper + add 2nd PRO 6000 later for 192 GB |
 
 **Why this is #1:** With MoE coding models, a single PRO 6000 delivers 134+ tok/s on the main agent — far exceeding the original target. The second GPU is no longer needed for speed. You save ~CHF 1,200-3,250 vs the dual-GPU builds.
+
+**Quality caveat:** The best model that fits (Qwen3-Coder-Next-80B, 70.6% SWE-Bench) is 10 points behind MiniMax-M2.5 (80.2%), which needs 128 GB. If agentic SWE quality is your priority over speed and cost, consider Config #2 instead. See [coding-model-benchmarks.md](coding-model-benchmarks.md).
 
 **Concurrent MoE model loading on 96 GB:**
 
@@ -110,8 +133,8 @@ RTX PRO 6000 (96 GB):
 | **Upgrade path** | Replace RTX 5090 with 2nd PRO 6000 for 192 GB |
 
 **When this is worth the extra over Config #1:**
+- **Model quality:** 128 GB unlocks MiniMax-M2.5 (**80.2% SWE-Bench Verified** — near-proprietary, vs 70.6% on 96 GB). This is the single biggest quality jump available. See [coding-model-benchmarks.md](coding-model-benchmarks.md).
 - You need **zero bandwidth contention** between main agent and sub-agents (dedicated GPUs)
-- You want to run **MiniMax-M2.5 NVFP4** (~130 GB) spanning both GPUs
 - You want **dense 70B on PRO 6000 + concurrent sub-agents on RTX 5090** without sharing bandwidth
 - Future-proofing: 128 GB total vs 96 GB
 
@@ -190,14 +213,16 @@ Sources: [Apple CH Store](https://www.apple.com/ch-de/shop/buy-mac/mac-studio), 
 ## Decision Framework
 
 ```
-Best overall (with MoE models)?
+Best overall (speed + value)?
   → Single RTX PRO 6000 (~CHF 9,500)
-    Get: 96 GB, MoE main agent at 134 tok/s, MoE sub-agents at 150-200 tok/s
+    Get: 96 GB, MoE main agent at 134 tok/s, SWE-Bench 70.6% (Qwen3-Coder-Next)
+    Caveat: 10 points behind frontier on SWE-Bench
     Upgrade path: add 2nd GPU later
 
-Need zero bandwidth contention or largest MoE models (MiniMax-M2.5)?
+Best model quality for agentic SWE?
   → RTX PRO 6000 + RTX 5090 (~CHF 11,450)
-    Get: 128 GB, dedicated GPUs for main vs sub-agents
+    Get: 128 GB, MiniMax-M2.5 at 80.2% SWE-Bench (near-proprietary quality)
+    Dedicated GPUs for main vs sub-agents, zero bandwidth contention
 
 Prioritize BUDGET + SILENCE above all?
   → 2x DGX Spark / ASUS Ascent (~CHF 5,000)
