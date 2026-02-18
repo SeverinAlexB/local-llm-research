@@ -7,7 +7,7 @@ Research into building a local AI inference server for multi-agent coding workfl
 ## Bottom Line
 
 1. **Best overall:** Single RTX PRO 6000 build (~CHF 9,500) — 134 tok/s MoE, 96 GB, quiet, upgradeable
-2. **Silent alternative:** Mac Studio M3 Ultra 256 GB (~CHF 6,100) — 69 tok/s MoE, zero build effort
+2. **Silent alternative:** Mac Studio M3 Ultra 256 GB ([~CHF 5,100](https://www.toppreise.ch/price-comparison/Complete-systems/APPLE-Mac-Studio-CTO-Apple-M3-Ultra-256GB-RAM-MU973-Z1CE-p829061)) — 69 tok/s MoE, zero build effort
 3. **Budget cluster:** 2× DGX Spark / ASUS Ascent (~CHF 5,000) — 75 tok/s MoE, turnkey, 256 GB
 
 ## Why Only Three Platforms?
@@ -37,6 +37,7 @@ This leaves three viable paths: **NVIDIA discrete GPUs** (best bandwidth + CUDA)
 
 | File | Purpose |
 |------|---------|
+| [nvidia-gpu/](nvidia-gpu/) | Platform overview — TL;DR, key specs, file index |
 | [nvidia-gpu/research.md](nvidia-gpu/research.md) | Deep-dive on every NVIDIA GPU considered |
 | [nvidia-gpu/build-guide.md](nvidia-gpu/build-guide.md) | Parts lists, prices, shop links for Configs #1, #2, #4 |
 | [nvidia-gpu/benchmarks.md](nvidia-gpu/benchmarks.md) | NVIDIA-specific token generation speeds, concurrent inference |
@@ -46,6 +47,7 @@ This leaves three viable paths: **NVIDIA discrete GPUs** (best bandwidth + CUDA)
 
 | File | Purpose |
 |------|---------|
+| [apple-silicon/](apple-silicon/) | Platform overview — TL;DR, key specs, file index |
 | [apple-silicon/research.md](apple-silicon/research.md) | Mac Studio M3 Ultra / M4 Max analysis |
 | [apple-silicon/benchmarks.md](apple-silicon/benchmarks.md) | Apple Silicon token generation speeds, concurrent scaling |
 
@@ -53,6 +55,7 @@ This leaves three viable paths: **NVIDIA discrete GPUs** (best bandwidth + CUDA)
 
 | File | Purpose |
 |------|---------|
+| [dgx-spark/](dgx-spark/) | Platform overview — TL;DR, key specs, file index |
 | [dgx-spark/research.md](dgx-spark/research.md) | DGX Spark / ASUS Ascent deep-dive, variants, clustering |
 | [dgx-spark/build-guide.md](dgx-spark/build-guide.md) | Cluster configurations (2-unit, 3-unit), pricing |
 | [dgx-spark/benchmarks.md](dgx-spark/benchmarks.md) | Spark-specific performance data |

@@ -23,15 +23,17 @@
 
 The relevant options today are:
 
-| Machine | Chip | Max Memory | Memory Bandwidth | Swiss Base Price |
-|---|---|---|---|---|
-| Mac Studio (2025) | M4 Max (16C CPU / 40C GPU) | 128 GB | 546 GB/s | CHF 2,599 |
-| Mac Studio (2025) | M3 Ultra (28C CPU / 60C GPU) | 256 GB (BTO) | 819 GB/s | CHF 4,199 |
-| Mac Studio (2025) | M3 Ultra (32C CPU / 80C GPU) | 512 GB (BTO) | 819 GB/s | CHF 5,699 |
-| Mac Pro (2023) | M2 Ultra (24C CPU / 60C GPU) | 192 GB | 800 GB/s | CHF 7,199 |
-| Mac Pro (2023) | M2 Ultra (24C CPU / 76C GPU) | 192 GB | 800 GB/s | CHF 8,299 |
+| Machine | Chip | Max Memory | Memory Bandwidth | Apple MSRP (CHF) | Best Retail (CHF) |
+|---|---|---|---|---|---|
+| Mac Studio (2025) | M4 Max (16C CPU / 40C GPU) | 128 GB | 546 GB/s | 2,599 | [1,750](https://www.toppreise.ch/price-comparison/Complete-systems/APPLE-Mac-Studio-Apple-M4-Max-36GB-RAM-512GB-SSD-MU963SM-A-p800776) (36 GB base) |
+| Mac Studio (2025) | M3 Ultra (28C CPU / 60C GPU) | 256 GB (BTO) | 819 GB/s | 4,199 | [3,622](https://www.toppreise.ch/price-comparison/Complete-systems/APPLE-Mac-Studio-Apple-M3-Ultra-96GB-RAM-1TB-SSD-MU973SM-A-p800777) (96 GB base) |
+| Mac Studio (2025) | M3 Ultra (32C CPU / 80C GPU) | 512 GB (BTO) | 819 GB/s | 5,699 | [5,006](https://www.toppreise.ch/price-comparison/Complete-systems/APPLE-Mac-Studio-CTO-Apple-M3-Ultra-96GB-RAM-1TB-MU973-Z1CE-p829070) (96 GB base) |
+| Mac Pro (2023) | M2 Ultra (24C CPU / 60C GPU) | 192 GB | 800 GB/s | 7,199 | — |
+| Mac Pro (2023) | M2 Ultra (24C CPU / 76C GPU) | 192 GB | 800 GB/s | 8,299 | — |
 
-Sources: [EveryMac Switzerland Prices](https://everymac.com/global-mac-prices/all-msrp-mac-studio-prices-in-switzerland.html), [Apple Mac Studio Specs](https://www.apple.com/mac-studio/specs/), [Apple CH Store](https://www.apple.com/ch-de/shop/buy-mac/mac-studio)
+**Note:** Swiss retailers on toppreise.ch sell Mac Studio CTO configurations for **10-15% below Apple MSRP**. All "Best Retail" prices are lowest available across Swiss shops as of February 2026.
+
+Sources: [EveryMac Switzerland Prices](https://everymac.com/global-mac-prices/all-msrp-mac-studio-prices-in-switzerland.html), [Apple Mac Studio Specs](https://www.apple.com/mac-studio/specs/), [Apple CH Store](https://www.apple.com/ch-de/shop/buy-mac/mac-studio), [toppreise.ch Mac Studio](https://www.toppreise.ch/price-comparison/Complete-systems/APPLE-Mac-Studio-Apple-M3-Ultra-96GB-RAM-1TB-SSD-MU973SM-A-p800777)
 
 ---
 
@@ -48,36 +50,33 @@ Sources: [EveryMac Switzerland Prices](https://everymac.com/global-mac-prices/al
 | Memory Bandwidth | 819 GB/s | 819 GB/s |
 | Storage Options | 1-8 TB (base) / 1-16 TB (high) | 1-16 TB |
 
-### Swiss Pricing (CHF, Apple Store)
+### Swiss Pricing (CHF)
 
-**Base configurations (from EveryMac/Apple CH):**
+**Verified retail prices from [toppreise.ch](https://www.toppreise.ch) (Feb 2026) — 10-15% below Apple MSRP:**
 
-| Configuration | CHF (estimated) |
-|---|---|
-| M3 Ultra 28C/60C, 96 GB, 1 TB | CHF 4,199 |
-| M3 Ultra 32C/80C, 96 GB, 1 TB | CHF 5,699 |
+#### 28C/60C GPU configurations
 
-**Memory upgrade costs (from US pricing, ~1:1.1 USD:CHF ratio):**
-
-| Upgrade | USD Cost | Estimated CHF |
+| Configuration | Apple MSRP | Best Retail (CHF) |
 |---|---|---|
-| 96 GB -> 256 GB (on 28C/60C) | +$1,600 | ~+CHF 1,700 |
-| 96 GB -> 256 GB (on 32C/80C) | +$1,500 | ~+CHF 1,600 |
-| 96 GB -> 512 GB (on 32C/80C) | +$2,400 | ~+CHF 2,500 |
+| 96 GB, 1 TB | 4,199 | [3,622](https://www.toppreise.ch/price-comparison/Complete-systems/APPLE-Mac-Studio-Apple-M3-Ultra-96GB-RAM-1TB-SSD-MU973SM-A-p800777) |
+| 96 GB, 2 TB | — | [4,010](https://www.toppreise.ch/price-comparison/Complete-systems/APPLE-Mac-Studio-CTO-Apple-M3-Ultra-96GB-RAM-2TB-MU973-Z1CE-p829062) |
+| **256 GB, 1 TB** | ~5,900 | **[5,096](https://www.toppreise.ch/price-comparison/Complete-systems/APPLE-Mac-Studio-CTO-Apple-M3-Ultra-256GB-RAM-MU973-Z1CE-p829061)** |
+| **256 GB, 2 TB** | ~6,100 | **[5,457](https://www.toppreise.ch/price-comparison/Complete-systems/APPLE-Mac-Studio-CTO-Apple-M3-Ultra-256GB-RAM-MU973-Z1CE-p829063)** |
+| 256 GB, 4 TB | — | [6,014](https://www.toppreise.ch/price-comparison/Complete-systems/APPLE-Mac-Studio-CTO-Apple-M3-Ultra-256GB-RAM-MU973-Z1CE-p829065) |
 
-**Key configurations for your use case:**
+#### 32C/80C GPU configurations
 
-| Configuration | Estimated CHF |
-|---|---|
-| M3 Ultra 28C/60C, **256 GB**, 1 TB | **~CHF 5,900** |
-| M3 Ultra 28C/60C, **256 GB**, 2 TB | **~CHF 6,100** |
-| M3 Ultra 32C/80C, **256 GB**, 2 TB | **~CHF 7,500** |
-| M3 Ultra 32C/80C, **512 GB**, 2 TB | **~CHF 8,400** |
-| Maxed out (32C/80C, 512 GB, 16 TB) | **~CHF 14,300** |
+| Configuration | Apple MSRP | Best Retail (CHF) |
+|---|---|---|
+| 96 GB, 1 TB | 5,699 | [5,006](https://www.toppreise.ch/price-comparison/Complete-systems/APPLE-Mac-Studio-CTO-Apple-M3-Ultra-96GB-RAM-1TB-MU973-Z1CE-p829070) |
+| **256 GB, 1 TB** | ~7,500 | **[6,465](https://www.toppreise.ch/price-comparison/Complete-systems/APPLE-Mac-Studio-CTO-Apple-M3-Ultra-256GB-RAM-MU973-Z1CE-p829071)** |
+| 256 GB, 2 TB | — | [6,841](https://www.toppreise.ch/price-comparison/Complete-systems/APPLE-Mac-Studio-CTO-Apple-M3-Ultra-256GB-RAM-MU973-Z1CE-p829074) |
+| **512 GB, 1 TB** | — | **[8,630](https://www.toppreise.ch/price-comparison/Complete-systems/APPLE-Mac-Studio-CTO-Apple-M3-Ultra-512GB-RAM-MU973-Z1CE-p829072)** |
+| 512 GB, 2 TB | — | [8,990](https://www.toppreise.ch/price-comparison/Complete-systems/APPLE-Mac-Studio-CTO-Apple-M3-Ultra-512GB-RAM-MU973-Z1CE-p829075) |
 
-**The sweet spot for your requirements: M3 Ultra 28C/60C with 256 GB, at approximately CHF 5,900-6,100.** This fits comfortably in the budget sweet spot of CHF 5,000-12,000.
+**The sweet spot for your requirements: M3 Ultra 28C/60C with 256 GB, 1 TB at [CHF 5,096](https://www.toppreise.ch/price-comparison/Complete-systems/APPLE-Mac-Studio-CTO-Apple-M3-Ultra-256GB-RAM-MU973-Z1CE-p829061).** This fits comfortably in the budget sweet spot of CHF 5,000-12,000 — and is ~CHF 800 cheaper than Apple Store direct.
 
-Sources: [MacRumors - Maxed Out Pricing](https://www.macrumors.com/2025/03/05/maxed-out-m3-ultra-mac-studio-14099/), [Apple US Store - 256GB Config](https://www.apple.com/shop/buy-mac/mac-studio/m3-ultra-chip-28-core-cpu-60-core-gpu-256gb-memory-1tb-storage)
+Sources: [toppreise.ch](https://www.toppreise.ch), [MacRumors - Maxed Out Pricing](https://www.macrumors.com/2025/03/05/maxed-out-m3-ultra-mac-studio-14099/), [Apple US Store - 256GB Config](https://www.apple.com/shop/buy-mac/mac-studio/m3-ultra-chip-28-core-cpu-60-core-gpu-256gb-memory-1tb-storage)
 
 ---
 
@@ -96,11 +95,13 @@ Sources: [MacRumors - Maxed Out Pricing](https://www.macrumors.com/2025/03/05/ma
 
 ### Swiss Pricing (CHF)
 
-| Configuration | CHF |
-|---|---|
-| M4 Max 14C/32C, 36 GB, 512 GB | CHF 2,099 |
-| M4 Max 16C/40C, 64 GB, 1 TB | CHF 2,599 |
-| M4 Max 16C/40C, **128 GB**, 1 TB | ~CHF 3,200 (estimated with upgrade) |
+| Configuration | Apple MSRP | Best Retail (CHF) |
+|---|---|---|
+| M4 Max 14C/32C, 36 GB, 512 GB | 2,099 | [1,750](https://www.toppreise.ch/price-comparison/Complete-systems/APPLE-Mac-Studio-Apple-M4-Max-36GB-RAM-512GB-SSD-MU963SM-A-p800776) |
+| M4 Max 16C/40C, 64 GB, 1 TB | 2,599 | [2,626](https://www.toppreise.ch/price-comparison/Complete-systems/APPLE-Mac-Studio-CTO-Apple-M4-Max-64GB-RAM-1TB-MU963-Z1CD-p829093) |
+| M4 Max 16C/40C, **128 GB**, 1 TB | ~3,200 | [3,369](https://www.toppreise.ch/price-comparison/Complete-systems/APPLE-Mac-Studio-CTO-Apple-M4-Max-128GB-RAM-1TB-MU963-Z1CD-p829094) |
+
+**Note:** M4 Max CTO configs with higher RAM (64 GB+) are priced near Apple MSRP on toppreise.ch — the big retail discounts apply primarily to M3 Ultra models.
 
 ### Why M4 Max is insufficient for your requirements
 

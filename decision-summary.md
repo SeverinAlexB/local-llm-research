@@ -38,8 +38,11 @@ Since early 2025, nearly all frontier coding models use **Mixture of Experts (Mo
 
 | Model | Total Params | Active Params | Q4 Size | Minimum VRAM |
 |---|---|---|---|---|
+| **Qwen3.5-397B-A17B** *(new, Feb 2026)* | 397B | 17B | ~212-241 GB | 3x PRO 6000 (288 GB) or 2-unit DGX Spark cluster (256 GB) |
 | **MiniMax-M2.5** | 230B | 10B | ~130 GB | 2x PRO 6000 (192 GB) |
 | **DeepSeek-V3/R1** (full) | 671B | 37B | ~386 GB | 5+ GPUs |
+
+**Note on Qwen3.5:** Released Feb 16, 2026. Claims competitive with GPT-5.2 / Claude Opus 4.5 (self-reported, unverified). With only 17B active params, inference should be fast once it fits — estimated ~60-75 tok/s on M3 Ultra 512 GB, ~150-180 tok/s on 2x PRO 6000. But it needs 212+ GB VRAM, ruling out single-GPU builds. See platform benchmark files for details.
 
 ### Dense Models for Comparison
 
@@ -138,7 +141,7 @@ RTX PRO 6000 (96 GB):
 
 | Metric | Value |
 |---|---|
-| **Total cost** | ~CHF 6,100 |
+| **Total cost** | [~CHF 5,100](https://www.toppreise.ch/price-comparison/Complete-systems/APPLE-Mac-Studio-CTO-Apple-M3-Ultra-256GB-RAM-MU973-Z1CE-p829061) (retail) / ~CHF 5,900 (Apple MSRP) |
 | **Total memory** | 256 GB unified (exceeds target) |
 | **MoE main agent** (GPT-OSS-120B Q4) | **~69 tok/s** — meets 60-80 target |
 | **MoE sub-agents** (Qwen3-30B-A3B Q4) | **~84 tok/s** single / ~25 tok/s at 8 concurrent |
@@ -202,7 +205,7 @@ Prioritize BUDGET + SILENCE above all?
     Accept: dense 70B unusable (~5 tok/s), only 2 concurrent streams
 
 Prioritize SILENCE + MEMORY above all?
-  → Mac Studio M3 Ultra 256 GB (~CHF 6,100)
+  → Mac Studio M3 Ultra 256 GB (~CHF 5,100 retail / ~CHF 5,900 Apple MSRP)
     Get: MoE main agent at ~69 tok/s, 256 GB memory, silent
     Accept: ~half the MoE speed of PRO 6000, concurrent performance degrades faster
 

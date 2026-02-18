@@ -37,6 +37,37 @@ Single-stream token generation (tok/s), context ~4K tokens.
 
 Sources: [Olares Blog Benchmarks](https://blog.olares.com/local-ai-hardware-performance-benchmarking/), [LMSYS DGX Spark Review](https://lmsys.org/blog/2025-10-13-nvidia-dgx-spark/)
 
+### 1.4 Qwen3.5-397B-A17B on Apple Silicon (Released Feb 16, 2026)
+
+The largest open-weight MoE model from Alibaba. 397B total parameters, **17B active per token**, 512 experts (11 active). Native multimodal (text + vision + video). Claims competitive with GPT-5.2 / Claude Opus 4.5 on 80% of benchmarks (self-reported, pending independent verification).
+
+**VRAM requirements:**
+
+KV cache is **exceptionally small** thanks to the hybrid DeltaNet architecture: only 15 of 60 layers use standard attention (2 KV heads each), the other 45 layers use Gated DeltaNet with a fixed ~22-90 MB recurrent state. At 8K context: ~0.3 GB. At 128K: ~3.9 GB. At 262K (max): ~7.7 GB.
+
+| Quantization | Model Size | + KV (128K ctx) | Total (128K) | Fits 256 GB? | Fits 512 GB? |
+|---|---|---|---|---|---|
+| IQ2_XXS (2-bit) | ~130 GB | ~3.9 GB | ~134 GB | Yes | Yes |
+| IQ4_XS (4-bit) | ~212 GB | ~3.9 GB | ~216 GB | Yes (~40 GB free) | Yes |
+| Q4_K_M (4-bit) | ~241 GB | ~3.9 GB | ~245 GB | Tight (~11 GB free) | Yes |
+| Q8_0 (8-bit) | ~422 GB | ~3.9 GB | ~426 GB | No | Barely |
+
+**Estimated performance on M3 Ultra (819 GB/s):**
+
+With 17B active params at Q4 (~8.5 GB active weights per token), the bandwidth math predicts ~96 tok/s theoretical, ~62-72 tok/s real — comparable to GPT-OSS-120B (69 tok/s with 20B active). Early day-one reports show lower numbers due to unoptimized software support for the novel Gated DeltaNet architecture.
+
+| Config | Quant | Est. tok/s | Notes |
+|---|---|---|---|
+| M3 Ultra 256 GB | IQ4_XS (~212 GB) | **~50-70** (optimized) | Fits with 128K context (~216 GB total). ~40 GB free for OS + sub-agent |
+| M3 Ultra 512 GB | Q4_K_M (~241 GB) | **~60-75** (optimized) | Comfortable, room for 262K context + sub-agents |
+| M3 Ultra 512 GB | Q8_0 (~422 GB) | **~30-40** (optimized) | Near-lossless quality, barely fits |
+
+**Day-one caveat:** MLX/llama.cpp support is brand new. Expect ~15-30 tok/s initially, converging to the estimates above as MoE routing optimizations land. One HN user reported 20+ tok/s on MXFP4 (~216 GB) on an unspecified MacBook.
+
+**Practical assessment for 256 GB Mac Studio:** The low KV cache makes this more viable than initially expected. At IQ4_XS (~212 GB) with 128K context (~216 GB total), ~40 GB remains for OS and potentially a small sub-agent model (e.g. Qwen3-30B-A3B Q4 at ~18 GB would be very tight). For full multi-agent workflows with multiple concurrent models, the proven **Qwen3-Next-80B-A3B** (60-70 tok/s, ~43 GB) and **Qwen3-30B-A3B** (84 tok/s, ~18 GB) still leave more headroom. On the 512 GB config, Qwen3.5-397B fits comfortably alongside sub-agents.
+
+Sources: [MarkTechPost — Qwen3.5 Release](https://www.marktechpost.com/2026/02/16/alibaba-qwen-team-releases-qwen3-5-397b-moe-model-with-17b-active-parameters-and-1m-token-context-for-ai-agents/), [HuggingFace — Qwen3.5-397B-A17B-GGUF](https://huggingface.co/unsloth/Qwen3.5-397B-A17B-GGUF), [Hacker News Discussion](https://news.ycombinator.com/item?id=47032876)
+
 ---
 
 ## 2. Concurrent Inference

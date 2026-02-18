@@ -26,6 +26,9 @@ For platform-specific benchmark data, see:
 | GPT-OSS-120B | 120B / ~20B | Q4 | ~65 GB | ~2 GB | ~67 GB |
 | Qwen3-Coder-30B-A3B | 30B / 3.3B | Q4 | ~18 GB | ~1 GB | ~19 GB |
 | MiniMax-M2.5 | 230B / 10B | NVFP4 | ~130 GB | ~5 GB | ~135 GB |
+| Qwen3.5-397B-A17B | 397B / 17B | IQ4_XS | ~212 GB | ~0.3 GB (8K) | ~212 GB |
+| Qwen3.5-397B-A17B | 397B / 17B | Q4_K_M | ~241 GB | ~0.3 GB (8K) | ~241 GB |
+| Qwen3-Next-80B-A3B | 80B / ~3B | Q4 | ~43 GB | ~1 GB | ~44 GB |
 | DeepSeek-Coder-V2-Lite | 16B / 2.4B | Q4 | ~10 GB | ~1 GB | ~11 GB |
 
 ### 1.2 Dense Models
@@ -149,6 +152,7 @@ Measured on similar hardware (A100-class), Llama 70B, high concurrency:
 - [BentoML — Benchmarking LLM Inference Backends](https://www.bentoml.com/blog/benchmarking-llm-inference-backends)
 
 ### Model VRAM Requirements
+- [HuggingFace — Qwen3.5-397B-A17B-GGUF (Unsloth)](https://huggingface.co/unsloth/Qwen3.5-397B-A17B-GGUF)
 - [APXML — GPU Requirements for Qwen Models](https://apxml.com/posts/gpu-system-requirements-qwen-models)
 - [APXML — GPU Requirements for Llama 3 Models](https://apxml.com/posts/ultimate-system-requirements-llama-3-models)
 - [APXML — GPU Requirements for DeepSeek Models](https://apxml.com/posts/system-requirements-deepseek-models)

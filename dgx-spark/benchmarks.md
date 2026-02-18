@@ -22,6 +22,23 @@ For shared reference data (memory requirements, inference software comparison), 
 
 Sources: [LMSYS DGX Spark Review](https://lmsys.org/blog/2025-10-13-nvidia-dgx-spark/), [LMSYS GPT-OSS on DGX Spark](https://lmsys.org/blog/2025-11-03-gpt-oss-on-nvidia-dgx-spark/)
 
+### 1.2 Qwen3.5-397B-A17B (Released Feb 16, 2026)
+
+397B total / **17B active** per token. IQ4_XS ~212 GB, Q4_K_M ~241 GB.
+
+**Fits on a 2-unit cluster (256 GB)** at IQ4_XS with ~40 GB headroom. With 17B active params at Q4 (~8.5 GB read per token) and ~546 GB/s combined bandwidth (2 units):
+
+KV cache is exceptionally small due to the hybrid DeltaNet architecture (only 15/60 layers use standard attention, 2 KV heads each). At 128K context: ~3.9 GB. At 262K: ~7.7 GB.
+
+| Config | Quant | Total VRAM (128K ctx) | Est. tok/s | Notes |
+|---|---|---|---|---|
+| 2 units (256 GB, TP=2) | IQ4_XS (~212 GB) | ~216 GB | **~40-50** | Fits with 128K context, ~40 GB free for sub-agent |
+| 3 units (384 GB, TP=3) | Q4_K_M (~241 GB) | ~245 GB | **~55-70** | Comfortable fit, room for 262K context + sub-agents |
+
+**Practical note:** The tiny KV cache makes the 2-unit cluster more viable than expected — even at 128K context, only ~216 GB is needed. The 3-unit cluster remains compelling for Q4_K_M quality and concurrent sub-agents. Day-one software support is unoptimized; expect numbers to improve.
+
+Sources: [HuggingFace — Qwen3.5-397B-A17B-GGUF](https://huggingface.co/unsloth/Qwen3.5-397B-A17B-GGUF)
+
 ---
 
 ## 2. Concurrent Inference Strategy

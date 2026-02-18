@@ -60,6 +60,27 @@ Since early 2025, frontier coding models use **Mixture of Experts (MoE)** archit
 
 Sources: [DatabaseMart PRO 6000 Benchmark](https://www.databasemart.com/blog/ollama-gpu-benchmark-pro6000), [Olares Blog Benchmarks](https://blog.olares.com/local-ai-hardware-performance-benchmarking/), [LMSYS DGX Spark Review](https://lmsys.org/blog/2025-10-13-nvidia-dgx-spark/)
 
+### 1.4 Qwen3.5-397B-A17B (Released Feb 16, 2026)
+
+397B total / **17B active** per token. 512 experts, 11 active. Native multimodal. Claims competitive with GPT-5.2 / Claude Opus 4.5.
+
+**Does NOT fit on a single RTX PRO 6000 (96 GB).** Q4_K_M is ~241 GB, IQ4_XS is ~212 GB. Minimum 3x RTX PRO 6000 (288 GB with NVLink) or 2x with aggressive 2-bit quantization.
+
+KV cache is exceptionally small due to the hybrid DeltaNet architecture (only 15/60 layers use standard attention, 2 KV heads each). At 128K context: ~3.9 GB. At 262K: ~7.7 GB. This makes 2x PRO 6000 (192 GB) more viable — IQ2_XXS (~130 GB) leaves ~55 GB for KV cache and sub-agents even at max context.
+
+**Estimated performance on 2x RTX PRO 6000 (192 GB, NVLink):**
+
+| Quant | Model Size | + KV (128K) | Est. tok/s | Notes |
+|---|---|---|---|---|
+| IQ2_XXS (2-bit) | ~130 GB | ~3.9 GB | ~100-130 | Fits with room to spare; quality loss |
+| IQ4_XS (4-bit) | ~212 GB | ~3.9 GB | — | Does not fit 192 GB |
+
+With 17B active params at Q4, the bandwidth math on 2x PRO 6000 (3,584 GB/s combined) predicts ~420 tok/s theoretical, ~150-180 tok/s real after MoE routing overhead and NVLink communication. Requires 3x PRO 6000 (288 GB) for Q4 quantization.
+
+**Practical note:** For a single PRO 6000 build, Qwen3.5 is out of reach. The existing MoE models (GPT-OSS-120B at 134 tok/s, Qwen3-30B-A3B at ~150-200 tok/s) remain the best options on 96 GB.
+
+Sources: [HuggingFace — Qwen3.5-397B-A17B-GGUF](https://huggingface.co/unsloth/Qwen3.5-397B-A17B-GGUF), [MarkTechPost — Qwen3.5 Release](https://www.marktechpost.com/2026/02/16/alibaba-qwen-team-releases-qwen3-5-397b-moe-model-with-17b-active-parameters-and-1m-token-context-for-ai-agents/)
+
 ---
 
 ## 2. Concurrent Inference Performance

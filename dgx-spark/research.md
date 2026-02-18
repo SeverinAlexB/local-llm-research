@@ -25,23 +25,6 @@ Sources: [NVIDIA DGX Spark](https://marketplace.nvidia.com/en-us/enterprise/pers
 
 ---
 
-## NVIDIA DGX Station (Upcoming, Spring 2026)
-
-| Spec | Value |
-|------|-------|
-| **Chip** | GB300 Grace Blackwell Ultra Desktop Super |
-| **Memory** | 784 GB unified (288 GB GPU HBM3e + system RAM) |
-| **Compute** | 20 PFLOPS AI |
-| **Price** | Not disclosed (likely $50,000+) |
-| **Availability** | Spring 2026 via ASUS, Dell, HP, MSI, Supermicro, others |
-| **Key Differentiator** | Desktop powerhouse. 784 GB unified memory. 20x DGX Spark performance. |
-
-**Assessment:** This is the ultimate desktop AI machine. 784 GB memory with 288 GB HBM3e bandwidth would demolish our performance targets. But pricing will almost certainly be $50,000-100,000+ based on NVIDIA's positioning. **Dream machine, likely far above budget.**
-
-Source: [DGX Station Blog](https://blogs.nvidia.com/blog/dgx-spark-and-station-open-source-frontier-models/)
-
----
-
 ## ASUS Ascent GX10 Variants
 
 All variants use the **identical GB10 Superchip** with 128 GB memory. Only storage/branding differs.
