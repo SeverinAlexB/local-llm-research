@@ -58,27 +58,9 @@ Local AI inference hardware for home office use, primarily for AI-assisted codin
 - NVIDIA/CUDA preferred for software ecosystem breadth, but Apple Silicon acceptable if NVIDIA breaks the budget
 - No lock-in to specific inference software — the stack will evolve (Ollama, vLLM, llama.cpp, LM Studio, etc.)
 
-## Preferred Retailers
-
-### Primary (Swiss, local warranty/support)
-- **digitec.ch** / **galaxus.ch** — Largest Swiss electronics retailer
-- **brack.ch** — Major Swiss online retailer
-- **Joule Performance** (jouleperformance.com) — Swiss builder, high-end workstations and multi-GPU systems
-- **Apple Store CH** (apple.com/ch-de) — Direct, incl. refurbished section (up to 15% off, full warranty)
-- **toppreise.ch** — Swiss price comparison across all retailers
-
-### International (ships to Switzerland with warranty)
-- **BIZON Tech** (bizon-tech.com) — Pre-built multi-GPU AI workstations, ships internationally
-- **BRESSNER Technology** (shop.bressner.de) — German, GPU servers and HPC solutions
-- **RECT** (rect.coreto-europe.com) — German, GPU server configurator
-- **Supermicro eStore Europe** (store.supermicro.com) — Enterprise GPU servers
-
-### Refurbished
-- **Servershop24** (servershop24.de) — German, specialized refurbished server shop (lower risk than random marketplaces)
 
 ## Timeline
 
-- Purchase: **February 2026** (this month)
 - This is what's available on the market right now
 
 ## Access Pattern
